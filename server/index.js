@@ -4,13 +4,13 @@ const cors = require('cors');
 const router = require('./router');
 const dotenv = require('dotenv');
 const { mongoose, uri } = require('./db');
-const PORT = process.env.SERVER_PORT || 3000;
+const PORT = 8080;
 
 const corsConfig = {
-    origin: 'http://localhost:4200',
-    credentials: true,
-    exposedHeaders: ['Authorization']
-}
+  origin: "https://job-tracker-pi.vercel.app",
+  credentials: true,
+  exposedHeaders: ["Authorization"],
+};
 
 dotenv.config();
 app.use(cors(corsConfig));

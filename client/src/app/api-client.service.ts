@@ -5,54 +5,56 @@ import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiClientService {
-
-  rootUrl = "http://localhost:3000/application"
+  rootUrl = 'https://blue-night-6822.fly.dev/application';
   token = this.authService.getToken();
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getApplications(): Observable<Application[]> {
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
     return this.http.get<Application[]>(this.rootUrl, httpOptions);
   }
 
-  getUserApplication(email: any):Observable<Application[]> {
+  getUserApplication(email: any): Observable<Application[]> {
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
-    return this.http.post <Application[]>(`${this.rootUrl}/user`, { email }, httpOptions);
+    return this.http.post<Application[]>(
+      `${this.rootUrl}/user`,
+      { email },
+      httpOptions
+    );
   }
-
 
   getApplicationById(id: String): Observable<Application> {
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
 
     return this.http.get<Application>(`${this.rootUrl}/${id}`, httpOptions);
   }
 
-  createApplication(application: any) : Observable<Application>{
+  createApplication(application: any): Observable<Application> {
     console.log(application);
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
     return this.http.post<Application>(this.rootUrl, application, httpOptions);
   }
@@ -61,8 +63,8 @@ export class ApiClientService {
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
     return this.http.delete<Application>(`${this.rootUrl}/${id}`, httpOptions);
   }
@@ -71,9 +73,13 @@ export class ApiClientService {
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${this.token}`
-      }
+        Authorization: `${this.token}`,
+      },
     };
-    return this.http.put<Application>(`${this.rootUrl}/${id}`, application, httpOptions);
+    return this.http.put<Application>(
+      `${this.rootUrl}/${id}`,
+      application,
+      httpOptions
+    );
   }
 }

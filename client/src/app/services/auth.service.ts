@@ -3,12 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/User';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  authUrl = "http://localhost:3000"
-  constructor(private httpClient: HttpClient) { }
+  authUrl = 'https://blue-night-6822.fly.dev';
+  constructor(private httpClient: HttpClient) {}
 
   loggedIn: Boolean = this.isLoggedIn();
 
@@ -25,15 +24,14 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
-  getUser(){
+  getUser() {
     return localStorage.getItem('user');
   }
 
-  getResponse(){
+  getResponse() {
     return localStorage.getItem('response');
   }
-
 }
